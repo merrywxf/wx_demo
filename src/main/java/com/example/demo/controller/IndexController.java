@@ -4,6 +4,7 @@ import com.example.demo.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,13 +27,13 @@ public class IndexController {
     public String index(Model model) {
         return "index";
     }
-
     @PostMapping("/wx_sign")
     @ResponseBody
     public Map<String, String> wx_sign(HttpServletRequest request) throws UnsupportedEncodingException {
         String token_url = String.format(wxConfig.getAccessTokenUrl(), wxConfig.getAppid(), wxConfig.getAppsecret());
         String jsapi_ticket = Token.getTicket(token_url,wxConfig.getTicketUrl());
         String contextUrl = request.getRequestURL().toString();
+        contextUrl=contextUrl.substring(0,contextUrl.lastIndexOf("/"));
         System.out.println(contextUrl+"===================url===");
 //        contextUrl="http://merry.f3322.net:6102";
         Map<String, String> ret = WXSign.sign(jsapi_ticket, contextUrl);
@@ -46,9 +47,9 @@ public class IndexController {
 
         return ret;
     }
-    @RequestMapping("/userAutho")
+    @GetMapping("/userAutho")
     public void UserInfo(HttpServletRequest request) {
-        System.out.println("==========================");
+        System.out.println("=================hello world=========");
         System.out.println(request.getRequestURL().toString());
     }
     @RequestMapping("/step")

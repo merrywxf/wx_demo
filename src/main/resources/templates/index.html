@@ -49,7 +49,7 @@
 
     $.ajax({
         type: "post",
-        url: 'http://merry.f3322.net:6102/wx_sign',
+        url: 'http://merrywxf.xyz/wx_sign',
         dataType: "html",
         success: function (msg) {
             var res = JSON.parse(msg)
@@ -59,8 +59,8 @@
                 timestamp: res.timestamp,
                 nonceStr: res.nonceStr,
                 signature: res.signature,
-                jsApiList: [ 'onMenuShareTimeline',  'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone' ]
-               // jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData', 'onMenuShareTimeline',  'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone' ]
+               jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData', 'onMenuShareTimeline',  'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo',
+                   'onMenuShareQZone' ,'getLocation']
             });
         }
 
@@ -70,8 +70,7 @@
         var title = '太平洋保险-太捷通1.0';
         var desc = '一键操作享服务\n方便快捷伴相随';
         var linkUrl = window.location.href;
-        linkUrl="http://merry.f3322.net:6102";
-        var imgUrl = 'http://218.12.25.82:6102/images/mobile/share_logo6.png';
+        var imgUrl = 'http://merrywxf.xyz/images/mobile/share_logo6.png';
         var shareData = {
             title: title, // 分享标题
             desc: '一键操作享服务\n方便快捷伴相随', // 分享描述
@@ -81,20 +80,37 @@
             height: 120 ,
             success: function () {
                 console.log("分享成功");
-                console.log(imgUrl);
             },
             cancel: function () {
                 // 用户取消分享后执行的回调函数
                 console.log("取消成功");
             }
         };
-        // wx.updateAppMessageShareData(shareData);
-        // wx.updateTimelineShareData(shareData);
+         wx.updateAppMessageShareData(shareData);
+         wx.updateTimelineShareData(shareData);
         wx.onMenuShareWeibo(shareData);
         wx.onMenuShareTimeline(shareData);
         wx.onMenuShareAppMessage(shareData);
         wx.onMenuShareQQ(shareData);
         wx.onMenuShareQZone(shareData);
+        wx.getLocation({
+           type:'wgs84',
+            success:function (ret) {
+                console.log(ret);
+                alert(ret);
+                $.ajax({
+                    type: "post",
+                    url: 'http://merrywxf.xyz/userAutho',
+                    data:ret,
+                    dataType: "html",
+                    success: function (msg) {
+                        var res = JSON.parse(ret)
+
+                    }
+
+                });
+            }
+        });
     });
 </script>
 
