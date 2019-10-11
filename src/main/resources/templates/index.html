@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          name="viewport">
+    <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="0" http-equiv="expires">
+    <meta content="telephone=no, address=no" name="format-detection">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <title>太捷通1.0 一键操作享服务 方便快捷伴相随</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/modernizr.custom.js"></script>
+    <script src="scripts/jquery.dlmenu.js"></script>
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <!--百度统计-->
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?aad9dacecbe88be178521ed1a8df747d";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<style type="text/css">
+    .layermchild {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .flexd {
+        position: fixed;
+        width: 100%;
+    }
+</style>
+<body onload="window.scrollTo(0,0)">
+<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+<script type="text/javascript">
+    var context = "[[@{/}]]";
+    // {"code": 1,"msg":  "OK","data":{"appId":"wxd7b9465cd5dad5c5","nonceStr":"BFYIZ4pjakKgLjVh","timestamp":1570690438,"url":"http:\/\/cpic.cncwkj.cn\/scripts\/mobile\/cms\/wx_sign.php","signature":"60215bd6dff9d7e6e7c20f33a5492c4b2c8f6d45","rawString":"jsapi_ticket=sM4AOVdWfPE4DxkXGEs8VGhaiQ95QkCJfPepdy17BLH8UnNyZbMWV8PG1MYcmB2uD4ZhP3G3n9PBuxTjsHES7g&noncestr=BFYIZ4pjakKgLjVh&timestamp=1570690438&url=http:\/\/cpic.cncwkj.cn\/scripts\/mobile\/cms\/wx_sign.php"}}
+
+    $.ajax({
+        type: "post",
+        url: 'http://merry.f3322.net:6102/wx_sign',
+        dataType: "html",
+        success: function (msg) {
+            var res = JSON.parse(msg)
+            wx.config({
+                debug: true,
+                appId: res.appId,
+                timestamp: res.timestamp,
+                nonceStr: res.nonceStr,
+                signature: res.signature,
+                jsApiList: [ 'onMenuShareTimeline',  'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone' ]
+               // jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData', 'onMenuShareTimeline',  'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone' ]
+            });
+        }
+
+    });
+    //http://218.12.25.82:6102/
+    wx.ready(function () {
+        var title = '太平洋保险-太捷通1.0';
+        var desc = '一键操作享服务\n方便快捷伴相随';
+        var linkUrl = window.location.href;
+        linkUrl="http://merry.f3322.net:6102";
+        var imgUrl = 'http://218.12.25.82:6102/images/mobile/share_logo6.png';
+        var shareData = {
+            title: title, // 分享标题
+            desc: '一键操作享服务\n方便快捷伴相随', // 分享描述
+            link: linkUrl, //网页地址
+            imgUrl: imgUrl, //小图片的地址
+            width: 120,
+            height: 120 ,
+            success: function () {
+                console.log("分享成功");
+                console.log(imgUrl);
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+                console.log("取消成功");
+            }
+        };
+        // wx.updateAppMessageShareData(shareData);
+        // wx.updateTimelineShareData(shareData);
+        wx.onMenuShareWeibo(shareData);
+        wx.onMenuShareTimeline(shareData);
+        wx.onMenuShareAppMessage(shareData);
+        wx.onMenuShareQQ(shareData);
+        wx.onMenuShareQZone(shareData);
+    });
+</script>
+
+<div class="layout-wrap">
+    <div class="wap-header">
+        <a href="/" title="太平洋保险"><img class="fl logo" src="images/mobile/logo-blue.png" alt="太平洋保险"/></a>
+        <img class="fl logo2" src="images/mobile/top-logo-2.png" alt="太好赔"/>
+        <img class="fr tel" src="images/mobile/top-logo-tel.png"/>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap step0">
+    <!--<a href="http://wxcd.cpic.com.cn/mic/ihandy_fore/indexService/selectedcar.action?from=singlemessage&isappinstalled=0" class="one">立即投保</a>-->
+
+    <div id="dl-menu" class="dl-menuwrapper">
+        <button id="dl-menu-button" style="font-size:14px;padding:0;">一键投保</button>
+        <ul class="dl-menu">
+            <li>
+                <a href="http://wxcd.cpic.com.cn/mic/ihandy_fore/indexService/selectedcar.action?from=singlemessage&isappinstalled=0">爱车生活</a>
+            </li>
+            <li><a href="http://kjgxplus.cpic.com.cn/kjgx/page/down/downplus.html">科技个险plus</a></li>
+        </ul>
+    </div>
+    <a href="tel:95500" class="zero two">一键咨询</a>
+    <a href="http://wxcd.cpic.com.cn/mic/ihandy/page2017/enjoy/claims.jsp?openid=oIVq0jskIIG9zQtHJkA4mBWtM4tU"
+       class="zero three">一键报案</a>
+    <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc3429cb8df150979&redirectUri=http%3A%2F%2Fwxcd.cpic.com.cn%2Fmic%2Fclub%2Frt.action%3Fweixid%3Dgh_60e60d160cfb%26key%3DwecharAssistance&response_type=code&scope=snsapi_base&state=1#wechat_redirect"
+       class="zero four">一键救援</a>
+    <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc3429cb8df150979&redirectUri=http%3A%2F%2Fwxcd.cpic.com.cn%2Fmic%2Fclub%2Frt.action%3Fweixid%3Dgh_60e60d160cfb%26key%3Dcarlife&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect"
+       class="zero five">一键享权</a>
+    <img src="images/mobile/p2-0.jpg" width="100%"/>
+    <img src="images/mobile/p3.jpg" width="100%"/>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#dl-menu').dlmenu();
+    });
+</script>
+<div class="clearfix"></div>
+
+<div class="layout-wrap step1">
+    <img class="t1 pt-page-moveFromLeft" src="images/mobile/p4-t1.png"/>
+    <img class="t2 pt-page-moveFromRight" src="images/mobile/p4-t2-1.png"/>
+    <img class="women pt-page-moveFromLeft" src="images/mobile/p4-women.png"/>
+    <img class="man pt-page-moveFromBottom" src="images/mobile/p4-man.png"/>
+    <a class="pmore pt-page-rotateInNewspaper" href="javascript:showPage('撞车了，怎么办？','1')"><!--详情点击--></a>
+    <img class="bg" src="images/mobile/p4-bg.jpg" width="100%"/>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap"><img src="images/mobile/p5.jpg" width="100%"/></div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap step2">
+    <a class="pmore pt-page-rotateInNewspaper" href="javascript:showPage('异地事故，怎么办？','2')"><!--详情点击--></a>
+    <img class="bg" src="images/mobile/p6.jpg" width="100%"/>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap"><img src="images/mobile/p7.jpg" width="100%"/></div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap step3">
+
+    <a class="pmore pt-page-rotateInNewspaper" href="javascript:showPage('报案后，多久赔付？','3')"><!--详情点击--></a>
+    <img class="bg" src="images/mobile/p8.jpg" width="100%"/>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap"><img src="images/mobile/p9.jpg" width="100%"/></div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap step4">
+
+    <a class="pmore pt-page-rotateInNewspaper" href="javascript:showPage('小额事故，如何处理？','4')"><!--详情点击--></a>
+    <img src="images/mobile/p10.jpg" width="100%"/>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap"><img src="images/mobile/p11.jpg" width="100%"/></div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap step5">
+
+    <a class="pmore pt-page-rotateInNewspaper" href="javascript:showPage('大额案件，如何处理？','5')"><!--详情点击--></a>
+    <img src="images/mobile/p12.jpg" width="100%"/>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap"><img src="images/mobile/p13.jpg" width="100%"/></div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap step6">
+
+    <a class="pmore pt-page-rotateInNewspaper" href="javascript:showPage('车辆被盗，怎么办？','6')"><!--详情点击--></a>
+    <img class="bg" src="images/mobile/p14.jpg" width="100%"/>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap"><img src="images/mobile/p15.jpg" width="100%"/></div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap step7">
+
+
+    <a class="pmore pt-page-rotateInNewspaper" href="javascript:showPage('修车难如何解决？','7')"><!--详情点击--></a>
+    <img class="bg" src="images/mobile/p16.jpg" width="100%"/>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap"><img src="images/mobile/p17.jpg" width="100%"/></div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap step8">
+
+    <a class="pmore pt-page-rotateInNewspaper" href="javascript:showPage('人伤事故，如何处理？','8')"><!--详情点击--></a>
+    <img class="bg" src="images/mobile/p18.jpg" width="100%"/>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap"><img src="images/mobile/p19.jpg" width="100%"/></div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap step9">
+
+    <a class="pmore pt-page-rotateInNewspaper" href="javascript:showPage('理赔结果，如何跟踪？','9')"><!--详情点击--></a>
+    <img class="bg" src="images/mobile/p20.jpg" width="100%"/>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap"><img src="images/mobile/p21.jpg" width="100%"/></div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap step10">
+
+    <a class="pmore pt-page-rotateInNewspaper" href="javascript:showPage('太保“蓝朋友”服务，有何优势？','10')"><!--详情点击--></a>
+    <img class="bg" src="images/mobile/p22.jpg" width="100%"/>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap"><img src="images/mobile/p23.jpg" width="100%"/></div>
+
+<div class="clearfix"></div>
+
+<div class="layout-wrap step11">
+
+    <a class="pmore pt-page-rotateInNewspaper" href="javascript:showPage('“快处快赔”服务，无需出警，一键定损','11')"><!--详情点击--></a>
+    <img class="bg" src="images/mobile/p24.jpg" width="100%"/>
+</div>
+
+<div class="clearfix"></div>
+
+<!--太保车险，额外保险项目  开始-->
+<div class="layout-wrap">
+    <img src="images/mobile/p25.jpg" width="100%"/>
+    <img src="images/mobile/p26.jpg" width="100%"/>
+    <img src="images/mobile/p27.jpg" width="100%"/>
+    <img src="images/mobile/p28-1.jpg" width="100%"/>
+    <img src="images/mobile/p29.jpg" width="100%"/>
+
+    <img src="images/mobile/p30.jpg" width="100%"/>
+    <img src="images/mobile/p31.jpg" width="100%"/>
+</div>
+
+<div class="clearfix"></div>
+
+<!--太保车险，额外保险项目  结束-->
+<div class="layout-wrap">
+    <div class="wap-footer">
+        <a href="/" title="太平洋保险"><img class="fl logo" src="images/mobile/logo-white.png" alt="太平洋保险"/></a>
+        <img class="fl logo2" src="images/mobile/di-logo-2.png" alt="太好赔"/>
+        <img class="fr other" src="images/mobile/di-logo-other.png"/>
+        <img class="fr tel" src="images/mobile/di-logo-tel.png"/>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+<div id="musicmp3">
+    <div id="audio-btn" class="on" onclick="musicmp3.changeClass(this,'media')">
+        <audio loop src="images/mobile/SoulostarInTime.mp3" id="media" preload="preload" autoplay="autoplay"></audio>
+    </div>
+</div>
+<script src="plugins/layui/layui.all.js" charset="utf-8"></script>
+<script>
+    document.addEventListener("WeixinJSBridgeReady", function () {
+        setTimeout(bgm, 2000);
+    }, false);
+
+    function bgm() {
+        var audio = document.getElementById("media");
+        audio.setAttribute("src", "images/mobile/SoulostarInTime.mp3");
+        audio.play();
+    }
+
+    //mp3 start
+    var musicmp3 = {
+        changeClass: function (target, id) {
+            var className = $(target).attr('class');
+            var ids = document.getElementById(id);
+            (className == 'on')
+                ? $(target).removeClass('on').addClass('off')
+                : $(target).removeClass('off').addClass('on');
+            (className == 'on')
+                ? ids.pause()
+                : ids.play();
+        },
+        play: function () {
+            document.getElementById('media').play();
+        }
+    }
+    musicmp3.play();
+
+    function showPage(title, aid) {
+        var url = "/step?aid=" + aid;
+        var scrollTop = $(document).scrollTop();//获取当前滚动条位置
+        $("body").addClass("flexd");//设置绝对定位，此时不操作的话底层页面回到最初位置
+        $("body").css("top", -scrollTop);//设置top属性确保屏幕显示滚动条的当前位置
+
+        layer.open({
+            scrollbar: false,
+            type: 2,
+            closeBtn: 0, //不显示关闭按钮
+            title: false,
+            //title: ''+title+'',
+            shadeClose: true,
+            shade: 0.8,
+            area: ['100%', '100%'],
+            content: ['' + url + ''], //iframe的url，no代表不显示滚动条
+            end: function () {
+
+                //弹层关闭时执行的语句
+                $("body").removeClass("flexd");//取消绝对定位
+                $("body").scrollTop(scrollTop);//滚动条回到停留位置
+            }
+        });
+    }
+
+    function jumpUrl(url) {
+        window.location.href = url;
+        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        parent.layer.close(index); //再执行关闭
+
+    }
+
+</script>
+
+
+</body>
+</html>
+
+<!-- include footer.html -->

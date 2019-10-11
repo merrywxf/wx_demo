@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8>
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="0" http-equiv="expires">
+    <meta content="telephone=no, address=no" name="format-detection">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <script src="scripts/jquery.js"></script>
+    <script src="plugins/layui/layui.js" charset="utf-8"></script>
+    <script src="scripts/global.mobile.js"></script>
+    <script src="scripts/modernizr.custom.js"></script>
+    <script src="scripts/jquery.dlmenu.js"></script>
+    <script src="scripts/swipe.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="plugins/layui/css/layui.css" media="all">
+    <style type="text/css">
+        <!--
+        a.close{position:absolute;top:6px;right:6px;z-index:9999;color:#fff;font-size:24px;border:1px solid #fff;border-radius:100%;display:block;width:20px;height:20px;line-height:20px;text-align:center;}
+        -->
+    </style>
+
+    <!--百度统计-->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?aad9dacecbe88be178521ed1a8df747d";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body bgcolor="#3282d9">
+<!--列表模块-->
+<div class="layout-wrap article-bg">
+
+    <a onClick="closeWin();"  class="close">×</a>
+
+
+
+    <script type="text/javascript">
+
+        function closeWin(){
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            parent.layer.close(index); //再执行关闭
+        }
+
+        function jumpUrl(url){
+            window.parent.jumpUrl(url);
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            parent.layer.close(index); //再执行关闭
+        }
+
+    </script>
+    <div class="layout-text">
+        <div class="big-title">“快处快赔”服务，无需出警，一键定损</div>
+
+        <div class="clearfix"></div>
+        <div class="content" style="padding-bottom:20px;">
+            <div style="height:344px;margin-top:10px;overflow:auto;"><p style="text-indent: 2em; text-align: left;"><span style="color: rgb(255, 255, 0);font-family:宋体;font-size:14px"><span style="font-family:宋体">太保联合京津冀鲁交警，共同推出交警在线</span>“<span style="font-family:Calibri">E</span><span style="font-family:宋体">”处理快处快赔”服务，案件便捷、快速处理，无需等待。</span></span></p><p><span style=";font-family:宋体;font-size:14px">&nbsp;</span></p><p style="text-indent: 2em; text-align: left;"><span style="color: rgb(255, 255, 0);"><span style="font-family: 宋体; font-size: 14px;">“快处快赔”服务流程：</span></span></p><p style="text-indent: 2em; text-align: left;"><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">手机下载交警在线</span>“<span style="font-family:Calibri">E</span><span style="font-family:宋体">”处理</span><span style="font-family:Calibri">APP</span><span style="font-family:宋体">——拍摄事故现场照片上传至系统——后台交警人员确定双方责任——将责任认定书转交至事故方及相关保险公司——如无异议，直接理赔——如存在异议，则可以通过在线、电话和民警出现场</span><span style="font-family:Calibri">3</span><span style="font-family:宋体">个途径再次和交警进行沟通协商。</span></span></p><p style="text-indent: 2em; text-align: left;"><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">（特别提示：事故</span>e<span style="font-family:宋体">处理所上传的照片必须是使用</span><span style="font-family:Calibri">App</span><span style="font-family:宋体">在现场拍摄的照片，提前拍好储存在手机中或视频截图等图片系统均不能上传。）</span></span></p><p><br/></p></div>
+            <div class="clearfix"></div>
+
+            <a href="javascript:jumpUrl('http://wxcd.cpic.com.cn/mic/ihandy_fore/indexService/selectedcar.action?from=singlemessage&isappinstalled=0')" class="onlyartBtn one">立即投保</a>
+            <a href="tel:95500" class="onlyartBtn two">在线咨询</a>
+            <a href="javascript:closeWin()" class="onlyartBtn three">返回首页</a>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <style type="text/css">
+        .layermchild{ -webkit-overflow-scrolling: touch;}
+    </style>
+
+
+
+
+    <div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8>
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="0" http-equiv="expires">
+    <meta content="telephone=no, address=no" name="format-detection">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <script src="scripts/jquery.js"></script>
+    <script src="plugins/layui/layui.js" charset="utf-8"></script>
+    <script src="scripts/global.mobile.js"></script>
+    <script src="scripts/modernizr.custom.js"></script>
+    <script src="scripts/jquery.dlmenu.js"></script>
+    <script src="scripts/swipe.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="plugins/layui/css/layui.css" media="all">
+    <style type="text/css">
+        <!--
+        a.close{position:absolute;top:6px;right:6px;z-index:9999;color:#fff;font-size:24px;border:1px solid #fff;border-radius:100%;display:block;width:20px;height:20px;line-height:20px;text-align:center;}
+        -->
+    </style>
+
+    <!--百度统计-->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?aad9dacecbe88be178521ed1a8df747d";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body bgcolor="#3282d9">
+<!--列表模块-->
+<div class="layout-wrap article-bg">
+
+    <a onClick="closeWin();"  class="close">×</a>
+
+
+
+    <script type="text/javascript">
+
+        function closeWin(){
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            parent.layer.close(index); //再执行关闭
+        }
+
+        function jumpUrl(url){
+            window.parent.jumpUrl(url);
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            parent.layer.close(index); //再执行关闭
+        }
+
+    </script>
+    <div class="layout-text">
+        <div class="big-title">报案后，多久赔付？</div>
+
+        <div class="clearfix"></div>
+        <div class="content" style="padding-bottom:20px;">
+            <div style="height:344px;margin-top:10px;overflow:auto;"><p style="text-align: center;"><span style="color: rgb(255, 255, 0);"><span style="font-family: 宋体; font-size: 14px;"><span style="font-family: 宋体;">理赔全程自动化，</span>“快”</span><span style="font-size: 14px; font-family: 宋体;">就一个字</span><span style="font-size: 14px; font-family: 宋体;">！</span></span></p><p><span style="color: rgb(255, 255, 0);"><strong><span style="font-size: 14px; font-family: 宋体;"><br/></span></strong></span></p><p style="text-align: center;"><img src="/upload/ueditor/image/20181102/1541120599.jpg" title="1541120599.jpg" alt="图片1.jpg"/></p><p style="text-align: center;"><br/></p><p style="text-align: center;"><img src="/upload/ueditor/image/20181102/1541120607.jpg" title="1541120607.jpg" alt="图片2.jpg"/></p></div>
+            <div class="clearfix"></div>
+
+            <a href="javascript:jumpUrl('http://wxcd.cpic.com.cn/mic/ihandy_fore/indexService/selectedcar.action?from=singlemessage&isappinstalled=0')" class="onlyartBtn one">立即投保</a>
+            <a href="tel:95500" class="onlyartBtn two">在线咨询</a>
+            <a href="javascript:closeWin()" class="onlyartBtn three">返回首页</a>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <style type="text/css">
+        .layermchild{ -webkit-overflow-scrolling: touch;}
+    </style>
+
+    <div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>
+
+
+
+
+</body>
+</html>
