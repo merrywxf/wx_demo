@@ -58,11 +58,11 @@ public class Token {
     //String url = wxConfig.server_token_url + "&appid=" + wxConfig.appid + "&secret=" + wxConfig.appsecret;
     public static String getTicket(String token_url, String ticket_url) {
         if ("".equals(access_token) || access_token == null || time > expires_in) {
-            JSONObject json = SendHttpRequest.sendGet(token_url);
+            JSONObject json = HttpUtil.sendGet(token_url);
             access_token = json.getString("access_token");
             ticket_url=String.format(ticket_url, access_token);
             // "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + access_token + "&type=jsapi";
-            jsapi_ticket = SendHttpRequest.sendGet(ticket_url).getString("ticket");
+            jsapi_ticket = HttpUtil.sendGet(ticket_url).getString("ticket");
             time = 0;
             return jsapi_ticket;
         } else {
@@ -71,6 +71,6 @@ public class Token {
     }
     public static void getCode(String auth_url){
 //        String url="https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect";
-        SendHttpRequest.sendGet(auth_url);
+        HttpUtil.sendGet(auth_url);
     }
 }

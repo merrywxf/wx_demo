@@ -14,9 +14,13 @@ import java.util.Map;
 public class IndexController {
     @Autowired
     private WXConfig wxConfig;
-
+//    @RequestMapping("/")
+//    @ResponseBody
+//    public String index(String echostr) {
+//        return echostr;
+//    }
     @RequestMapping("/")
-    public String index(String echostr) {
+    public String index() {
         return "index";
     }
     @PostMapping("/wx_sign")
@@ -25,27 +29,25 @@ public class IndexController {
         String token_url = String.format(wxConfig.getAccessTokenUrl(), wxConfig.getAppid(), wxConfig.getAppsecret());
         String jsapi_ticket = Token.getTicket(token_url,wxConfig.getTicketUrl());
         String contextUrl = request.getRequestURL().toString();
-        contextUrl=contextUrl.substring(0,contextUrl.lastIndexOf("/"));
+        contextUrl=contextUrl.substring(0,contextUrl.lastIndexOf("/")+1);
         System.out.println(contextUrl+"===================url===");
         Map<String, String> ret = WXSign.sign(jsapi_ticket, contextUrl);
         for (Map.Entry entry : ret.entrySet()) {
             System.out.println(entry.getKey() + ", " + entry.getValue());
         }
         ret.put("appId", wxConfig.getAppid());
-//        String backUrl= URLEncoder.encode("http://218.12.25.82:6102/userAutho","UTF-8");
-//String auth_url="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+wxConfig.getAppid()+"&redirect_uri="+backUrl+"&response_type=code&scope=SCOPE&state=STATE#wechat_redirect";
-//    Token.getCode(auth_url);
-
         return ret;
     }
-    @GetMapping("/userAutho")
-    public void UserInfo(HttpServletRequest request) {
-        System.out.println("=================hello world=========");
-        System.out.println(request.getRequestURL().toString());
+    @GetMapping("/location")
+    @ResponseBody
+    public String UserInfo(HttpServletRequest request,String latitude,String longitude) {
+        System.out.println(latitude+"=================hello world=========");
+        System.out.println(longitude+"=================hello world=========");
+        return "ok";
     }
     @RequestMapping("/step")
     public String step(String aid) {
         System.out.println(aid + "=============================");
-        return "step" + aid;
+        return "step/step" + aid;
     }
 }
