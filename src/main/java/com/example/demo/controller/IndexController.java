@@ -4,18 +4,10 @@ import com.example.demo.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.beans.Encoder;
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Base64;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -24,8 +16,10 @@ public class IndexController {
     private WXConfig wxConfig;
 
     @RequestMapping("/")
-    public String index(Model model) {
-        return "index";
+    @ResponseBody
+    public String index(String echostr) {
+      //  return "index";
+        return echostr;
     }
     @PostMapping("/wx_sign")
     @ResponseBody
@@ -35,7 +29,6 @@ public class IndexController {
         String contextUrl = request.getRequestURL().toString();
         contextUrl=contextUrl.substring(0,contextUrl.lastIndexOf("/"));
         System.out.println(contextUrl+"===================url===");
-//        contextUrl="http://merry.f3322.net:6102";
         Map<String, String> ret = WXSign.sign(jsapi_ticket, contextUrl);
         for (Map.Entry entry : ret.entrySet()) {
             System.out.println(entry.getKey() + ", " + entry.getValue());
