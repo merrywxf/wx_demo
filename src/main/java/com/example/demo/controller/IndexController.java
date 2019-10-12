@@ -16,10 +16,8 @@ public class IndexController {
     private WXConfig wxConfig;
 
     @RequestMapping("/")
-    @ResponseBody
     public String index(String echostr) {
-      //  return "index";
-        return echostr;
+        return "index";
     }
     @PostMapping("/wx_sign")
     @ResponseBody
