@@ -17,4 +17,8 @@ public class VisitLog {
     private String latitude;
     private String longitude;
     private String lastShareVisitId;
+    //城市码表
+    private String cityCode;
+    //区域码表
+    private String adCode;
 }

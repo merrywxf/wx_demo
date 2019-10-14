@@ -1,7 +1,6 @@
 package com.example.demo.repository;
 
 import com.example.demo.model.VisitLog;
-import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

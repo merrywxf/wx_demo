@@ -14,6 +14,6 @@ public class WXConfig {
     private String accessTokenUrl;
     private String oauthUrl;
     private String ticketUrl;
-
+    private String baiduUrl;
 
 }

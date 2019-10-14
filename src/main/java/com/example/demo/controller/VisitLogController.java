@@ -1,9 +1,11 @@
 package com.example.demo.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.model.VisitLog;
 import com.example.demo.repository.VisitLogRepository;
 import com.example.demo.util.HttpUtil;
 import com.example.demo.util.PageUtil;
+import com.example.demo.util.WXConfig;
 import org.apache.http.client.utils.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,13 +28,26 @@ public class VisitLogController {
     private Logger logger = LoggerFactory.getLogger(VisitLogController.class);
     @Autowired
     VisitLogRepository visitLogRepository;
+    @Autowired
+    private WXConfig wxConfig;
 
     @GetMapping("/update")
     public String update(VisitLog visitLog) {
         logger.info("update visit location");
         visitLogRepository.update( visitLog.getId(),visitLog.getLatitude(), visitLog.getLongitude());
+        visitLogRepository.update(visitLog.getId(), visitLog.getLatitude(), visitLog.getLongitude());
+        String baiDuUrl = String.format(wxConfig.getBaiduUrl(), visitLog.getLatitude() + "," + visitLog.getLongitude());
+        JSONObject jsonObject = HttpUtil.sendGet(baiDuUrl);
+        if ("0".equals(jsonObject.getString("status"))) {
+            JSONObject result = jsonObject.getJSONObject("result");
+            JSONObject addressComponent = result.getJSONObject("addressComponent");
+            String adcode = addressComponent.getString("adcode");
+            visitLog.setAdCode(adcode);
+            visitLog.setCityCode(result.getString("cityCode"));
+        }
         return String.valueOf(visitLog.getId());
     }
+
     @GetMapping(value = "visits")
     //currentPage 当前页，默认为0，如果传1的话是查的第二页数据
     //pageSize 每页数据条数

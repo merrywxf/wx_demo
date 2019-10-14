@@ -43,6 +43,7 @@ public class HttpUtil {
                     System.out.println(str);
                     jsonResult = (JSONObject) JSONObject.parse(str);
                 } catch (Exception e) {
+                    e.printStackTrace();
                     System.out.println("get请求提交失败:" + url);
                 }
             }
