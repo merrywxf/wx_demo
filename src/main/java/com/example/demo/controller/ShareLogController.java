@@ -25,13 +25,10 @@ public class ShareLogController {
     ShareLogRepository shareLogRepository;
 
     @GetMapping("/save")
-    public String save(HttpServletRequest request, String status, String type) {
-        ShareLog shareLog = new ShareLog();
+    public String save(HttpServletRequest request, ShareLog shareLog) {
         String date = DateUtils.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
         shareLog.setDateTime(date);
-        shareLog.setStatus(status);
         shareLog.setUserIp(HttpUtil.getIpAddress(request));
-        shareLog.setType(type);
         shareLogRepository.save(shareLog);
         return "ok";
     }

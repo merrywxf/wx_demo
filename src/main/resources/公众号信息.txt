@@ -1,4 +1,4 @@
-163���ĺ�
+163订阅号
 
 merrywangxf@163.com
 appcert
@@ -17,3 +17,8 @@ https://www.abeiyun.com/control/#/freeServer/314751
 
 centos7 103.45.177.23
 root/Wxf123456
+
+小程序 126邮箱  账号
+appid  	wx845cae78e1f02ee8
+appcert
+d1424a2001660581b485b462ab8c1c0a

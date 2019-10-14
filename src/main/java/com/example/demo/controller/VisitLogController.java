@@ -5,6 +5,8 @@ import com.example.demo.repository.VisitLogRepository;
 import com.example.demo.util.HttpUtil;
 import com.example.demo.util.PageUtil;
 import org.apache.http.client.utils.DateUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,21 +23,13 @@ import java.util.Date;
 @RequestMapping("/visit")
 @ResponseBody
 public class VisitLogController {
+    private Logger logger = LoggerFactory.getLogger(VisitLogController.class);
     @Autowired
     VisitLogRepository visitLogRepository;
 
-    @GetMapping("/save")
-    public String save(HttpServletRequest request, VisitLog visitLog) {
-        String date = DateUtils.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
-        visitLog.setUserIp(HttpUtil.getIpAddress(request));
-        visitLog.setDateTime(date);
-        visitLogRepository.save(visitLog);
-        return String.valueOf(visitLog.getId());
-    }
-
     @GetMapping("/update")
     public String update(VisitLog visitLog) {
-        System.out.println(visitLog.getId()+"=================================");
+        logger.info("update visit location");
         visitLogRepository.update( visitLog.getId(),visitLog.getLatitude(), visitLog.getLongitude());
         return String.valueOf(visitLog.getId());
     }

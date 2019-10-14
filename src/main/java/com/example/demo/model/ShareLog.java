@@ -18,4 +18,6 @@ public class ShareLog {
     private String status;
     private String errorMsg;
     private String dateTime;
+    //访问者id
+    private String visitId;
 }

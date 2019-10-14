@@ -16,4 +16,5 @@ public class VisitLog {
     private String dateTime;
     private String latitude;
     private String longitude;
+    private String lastShareVisitId;
 }

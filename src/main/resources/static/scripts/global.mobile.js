@@ -180,3 +180,28 @@ function reloadData(){
     layer.closeAll();
     window.location.href = location.href;
 }
+function getAjax(url, data, callBack) {
+    $.ajax({
+        type: "get",
+        url: url,
+        data: data,
+        dataType: "html",
+        success: function (msg) {
+            callBack(msg);
+        }
+
+    });
+}
+
+function postAjax(url, data, callBack) {
+    $.ajax({
+        type: "post",
+        url: url,
+        data: data,
+        dataType: "html",
+        success: function (msg) {
+            callBack(msg);
+        }
+
+    });
+}

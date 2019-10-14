@@ -1,9 +1,6 @@
 package com.example.demo.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
-import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -16,16 +13,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-@Configuration
-@EnableJpaRepositories(
-        basePackages = "com.example.demo.repository",
-        transactionManagerRef = "jpaTransactionManager",
-        entityManagerFactoryRef = "localContainerEntityManagerFactoryBean"
-)
-@EnableTransactionManagement
+//@Configuration
+//@EnableJpaRepositories(
+//        basePackages = "com.example.demo.repository",
+//        transactionManagerRef = "jpaTransactionManager",
+//        entityManagerFactoryRef = "localContainerEntityManagerFactoryBean"
+//)
+//@EnableTransactionManagement
 public class JpaConfiguration {
 
-    @Autowired
     @Bean
     public JpaTransactionManager jpaTransactionManager(@Qualifier(value = "EmbeddedDataSource") DataSource dataSource, EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager jpaTransactionManager
@@ -36,7 +32,6 @@ public class JpaConfiguration {
         return jpaTransactionManager;
     }
 
-    @Autowired
     @Bean
     LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean(@Qualifier(value = "EmbeddedDataSource") DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
         LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean

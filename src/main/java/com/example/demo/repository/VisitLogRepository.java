@@ -12,9 +12,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface VisitLogRepository extends CrudRepository<VisitLog, Long> {
     Page<VisitLog> findAll(@PageableDefault(value = 15, sort = {"dateTime"}, direction = Sort.Direction.DESC) Pageable pageable);
+
     @Transactional
     @Modifying
     @Query("update VisitLog set latitude=:latitude , longitude=:longitude where id=:id")

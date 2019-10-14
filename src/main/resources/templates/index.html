@@ -17,6 +17,7 @@
     <meta name="description" content="">
     <script src="scripts/jquery.js"></script>
     <script src="scripts/modernizr.custom.js"></script>
+    <script src="scripts/global.mobile.js"></script>
     <script src="scripts/jquery.dlmenu.js"></script>
     <link rel="stylesheet" href="css/mobile.css">
     <link rel="stylesheet" href="css/animations.css">
@@ -42,41 +43,30 @@
     }
 </style>
 <body onload="window.scrollTo(0,0)">
+
+<input type="hidden" th:value="${visitId}" id="visitId" />
 <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
 <script type="text/javascript">
     var context = "[[@{/}]]";
-    var visitId = "0";
-    // {"code": 1,"msg":  "OK","data":{"appId":"wxd7b9465cd5dad5c5","nonceStr":"BFYIZ4pjakKgLjVh","timestamp":1570690438,"url":"http:\/\/cpic.cncwkj.cn\/scripts\/mobile\/cms\/wx_sign.php","signature":"60215bd6dff9d7e6e7c20f33a5492c4b2c8f6d45","rawString":"jsapi_ticket=sM4AOVdWfPE4DxkXGEs8VGhaiQ95QkCJfPepdy17BLH8UnNyZbMWV8PG1MYcmB2uD4ZhP3G3n9PBuxTjsHES7g&noncestr=BFYIZ4pjakKgLjVh&timestamp=1570690438&url=http:\/\/cpic.cncwkj.cn\/scripts\/mobile\/cms\/wx_sign.php"}}
+    var visitId = $("#visitId").val();
     var basePath = 'http://www.cainiaokt.com';
-    getAjax("/visit/save", {}, function (msg) {
-        console.log(msg);
-        visitId = msg;
+    postAjax( basePath+'/wx_sign',{url:encodeURIComponent(window.location.href)},function (msg) {
+        var res = JSON.parse(msg);
+        wx.config({
+            debug: true,
+            appId: res.appId,
+            timestamp: res.timestamp,
+            nonceStr: res.nonceStr,
+            signature: res.signature,
+            jsApiList: ['checkJsApi','updateAppMessageShareData', 'updateTimelineShareData','onMenuShareTimeline','onMenuShareAppMessage',
+                'onMenuShareWeibo','onMenuShareQQ','onMenuShareQZone','getLocation']
+        });
     });
-    $.ajax({
-        type: "post",
-        url: basePath+'/wx_sign',
-        dataType: "html",
-        success: function (msg) {
-            var res = JSON.parse(msg)
-            wx.config({
-                debug: false,
-                appId: res.appId,
-                timestamp: res.timestamp,
-                nonceStr: res.nonceStr,
-                signature: res.signature,
-               // jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData', 'onMenuShareTimeline',  'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo',
-               //     'onMenuShareQZone' ,'getLocation']
-                jsApiList: ['checkJsApi','updateAppMessageShareData', 'updateTimelineShareData','onMenuShareTimeline','onMenuShareAppMessage'  ,
-                    'onMenuShareWeibo','getLocation']
-            });
-        }
-
-    });
-    //http://218.12.25.82:6102/
     wx.ready(function () {
         var title = '太平洋保险-太捷通1.0';
         var desc = '一键操作享服务\n方便快捷伴相随';
-        var linkUrl = window.location.href.split("?")[0];
+        // var linkUrl = window.location.href.split("?")[0];
+        var linkUrl=basePath+"?visitId="+visitId;
         var imgUrl = basePath + '/images/mobile/share_logo6.png';
         var shareData = {
             'title': '' + title + '', // 分享标题
@@ -88,13 +78,13 @@
             success: function () {
                 // 用户确认分享后执行的回调函数
                 console.log("分享成功");
-                getAjax("/share/save",{type:'0',status:'0'},function (msg) {
+                getAjax("/share/save",{type:'0',status:'0',visitId:visitId},function (msg) {
                     console.log(msg)
                 })
             },
             cancel: function () {
                 console.log("取消分享");
-                getAjax("/share/save",{type:'0',status:"1"},function (msg) {
+                getAjax("/share/save",{type:'0',status:"1",visitId:visitId},function (msg) {
                     console.log(msg)
                 })
                 // 用户取消分享后执行的回调函数
@@ -145,7 +135,7 @@
             type: 'wgs84',
             success: function (ret) {
                 console.log(ret);
-                if (visitId != "0") {
+                if (visitId) {
                     getAjax("/visit/update", {
                         latitude: ret.latitude,
                         longitude: ret.longitude,
@@ -157,32 +147,6 @@
             }
         });
     });
-
-    function getAjax(url, data, callBack) {
-        $.ajax({
-            type: "get",
-            url: url,
-            data: data,
-            dataType: "html",
-            success: function (msg) {
-                callBack(msg);
-            }
-
-        });
-    }
-
-    function postAjax(url, data, callBack) {
-        $.ajax({
-            type: "post",
-            url: url,
-            data: data,
-            dataType: "html",
-            success: function (msg) {
-                callBack(msg);
-            }
-
-        });
-    }
 </script>
 
 <div class="layout-wrap">
