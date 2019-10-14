@@ -12,7 +12,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
+import java.io.*;
 
 public class HttpUtil {
     /**
@@ -74,5 +74,13 @@ public class HttpUtil {
         }
         return ip;
     }
-
+public static void main(String args[]) throws IOException {
+    FileReader fileReader = new FileReader(new File("D:\\workspace\\wx_demo\\src\\main\\resources\\city.sql"));
+    BufferedReader reader = new BufferedReader(fileReader);
+    String line ="";
+    while ((line=reader.readLine())!=null){
+        line=line.replaceAll(" ","");
+        System.out.println(line);
+    }
+}
 }
