@@ -1,42 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset=utf-8>
-    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-    <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
-    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
-    <meta content="no-cache" http-equiv="pragma">
-    <meta content="0" http-equiv="expires">
-    <meta content="telephone=no, address=no" name="format-detection">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <script src="scripts/jquery.js"></script>
-    <script src="plugins/layui/layui.js" charset="utf-8"></script>
-    <script src="scripts/global.mobile.js"></script>
-    <script src="scripts/modernizr.custom.js"></script>
-    <script src="scripts/jquery.dlmenu.js"></script>
-    <script src="scripts/swipe.js"></script>
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
-    <link rel="stylesheet" href="css/mobile.css">
-    <link rel="stylesheet" href="plugins/layui/css/layui.css" media="all">
-    <style type="text/css">
-        <!--
-        a.close{position:absolute;top:6px;right:6px;z-index:9999;color:#fff;font-size:24px;border:1px solid #fff;border-radius:100%;display:block;width:20px;height:20px;line-height:20px;text-align:center;}
-        -->
-    </style>
-
-    <!--百度统计-->
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?aad9dacecbe88be178521ed1a8df747d";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-</head>
+    <head th:include="common/head.html"></head>
 <body bgcolor="#3282d9">
 <!--列表模块-->
 <div class="layout-wrap article-bg">

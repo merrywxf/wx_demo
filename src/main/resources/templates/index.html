@@ -1,47 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-          name="viewport">
-    <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
-    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
-    <meta content="no-cache" http-equiv="pragma">
-    <meta content="0" http-equiv="expires">
-    <meta content="telephone=no, address=no" name="format-detection">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-    <title>太捷通1.0 一键操作享服务 方便快捷伴相随</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <script src="scripts/jquery.js"></script>
-    <script src="scripts/modernizr.custom.js"></script>
-    <script src="scripts/global.mobile.js"></script>
-    <script src="scripts/jquery.dlmenu.js"></script>
-    <link rel="stylesheet" href="css/mobile.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <!--百度统计-->
-    <script>
-        var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?aad9dacecbe88be178521ed1a8df747d";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-</head>
-<style type="text/css">
-    .layermchild {
-        -webkit-overflow-scrolling: touch;
-    }
+<head th:include="common/head.html"></head>
 
-    .flexd {
-        position: fixed;
-        width: 100%;
-    }
-</style>
 <body onload="window.scrollTo(0,0)">
 
 <input type="hidden" th:value="${visitId}" id="visitId" />
