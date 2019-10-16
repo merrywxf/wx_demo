@@ -32,10 +32,11 @@ public class VisitLogController {
     private WXConfig wxConfig;
 
     @GetMapping("/update")
-    public String update(VisitLog visitLog) {
+    public String update(VisitLog visitLog1) {
         logger.info("update visit location");
-        visitLogRepository.update( visitLog.getId(),visitLog.getLatitude(), visitLog.getLongitude());
-        visitLogRepository.update(visitLog.getId(), visitLog.getLatitude(), visitLog.getLongitude());
+        VisitLog visitLog = visitLogRepository.findById(visitLog1.getId()).get();
+        visitLog.setLatitude(visitLog1.getLatitude());
+        visitLog.setLongitude(visitLog1.getLongitude());
         String baiDuUrl = String.format(wxConfig.getBaiduUrl(), visitLog.getLatitude() + "," + visitLog.getLongitude());
         JSONObject jsonObject = HttpUtil.sendGet(baiDuUrl);
         if ("0".equals(jsonObject.getString("status"))) {
@@ -45,13 +46,15 @@ public class VisitLogController {
             visitLog.setAdCode(adcode);
             visitLog.setCityCode(result.getString("cityCode"));
         }
+//        visitLogRepository.update(visitLog);
+        visitLogRepository.save(visitLog);
         return String.valueOf(visitLog.getId());
     }
 
     @GetMapping(value = "visits")
     //currentPage 当前页，默认为0，如果传1的话是查的第二页数据
     //pageSize 每页数据条数
-    public Page<VisitLog> findAll(@RequestParam(value = "currentPage") int currentPage, @RequestParam(value = "pageSize") int pageSize) {
+    public Page<VisitLog> findAll(@RequestParam(value = "currentPage")  int currentPage, @RequestParam(value = "pageSize") int pageSize) {
         Pageable pageable = PageUtil.getPageable(currentPage, pageSize, "dateTime");
         return visitLogRepository.findAll(pageable);
     }
