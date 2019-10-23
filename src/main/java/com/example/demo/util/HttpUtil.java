@@ -33,7 +33,7 @@ public class HttpUtil {
                 .setSocketTimeout(10000)
                 .setConnectionRequestTimeout(3000)
                 .build();
-        method.setConfig(requestConfig);
+      //  method.setConfig(requestConfig);
         try {
             CloseableHttpResponse result = httpclient.execute(method);
             if (result.getStatusLine().getStatusCode() == 200) {

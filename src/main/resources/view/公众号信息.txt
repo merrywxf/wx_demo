@@ -14,9 +14,10 @@ encodingaeskey lSAX1M9hKax3Eh0dZDUvg3RP3vKPjbwbdqjv2y72cZ2
 阿贝云账号
 https://www.abeiyun.com/control/#/freeServer/314751
 352004760@qq.com
-
-centos7 103.45.177.23
+腾讯云
+centos7 49.235.98.192
 root/Wxf123456
+mysql root/paC-Mp(WR2)D
 
 小程序 126邮箱  账号
 appid  	wx845cae78e1f02ee8
