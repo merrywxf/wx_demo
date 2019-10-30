@@ -1,0 +1,106 @@
+https://blog.csdn.net/zhuyu19911016520/article/details/93994697
+
+Nginx核心要领十三：Nginx让网站启用免费HTTPS，子域名也开启https
+2019-06-28 14:31:06 闪耀的瞬间 阅读数 290更多
+分类专栏： nginx
+版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
+本文链接：https://blog.csdn.net/zhuyu19911016520/article/details/93994697
+Let’s Encrypt 是一个于2015年推出的数字证书认证机构，将通过旨在消除当前手动创建和安装证书的复杂过程的自动化流程，为安全网站提供免费的SSL/TLS证书，它有个赞助商 电子前哨基金会，让网站安装证书十分简单，只需要使用电子前哨基金会EFF的 Certbot。
+
+PS：阿里云服务器，需要先在服务器网络安全规则中开放 443 端口
+
+让我们来安装证书吧：
+
+1.打开 https://certbot.eff.org 网页
+2.选择web服务软件和操作系统版本，我这里是 nginx 、centos7.4
+在这里插入图片描述
+3.在该页面下方会有 Nginx 在 Centos7下安装 HTTPS 的操作步骤
+a：用ssh连接服务器
+b：启用epel依赖，可用 yum install -y epel epel-devel
+c：yum -y install yum-utils
+d：yum-config-manager --enable rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional
+e：sudo yum install certbot python2-certbot-nginx
+4.执行上面的命令后，再运行：sudo certbot --nginx ，certbot 会自动检查到你的 nginx.conf 下的配置，把你所有的虚拟站点都列出来，然后让你选择需要开启 https 的站点。你就简单的输入列表编号（用空格分开），然后，certbot 就帮你下载证书并更新 nginx.conf 了
+5.打开 nginx.conf 文件，可在 server 模块下看到下面内容，（其中 http2 可以提升性能，但是需要在编译nginx阶段通过 --with-http_v2_module启用，如果你没有则可去掉，编译代码：./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_realip_module --with-http_v2_module（http2要求 Nginx 版本要大于 1.9.5））
+#在location下添加重定向，访问 www.zypcy.cn时会自动跳转到 https://www.zypcy.cn
+location / {
+    # Redirect non-https traffic to https
+    if ($scheme != "https") {
+       return 301 https://$host$request_uri;
+    }
+}
+
+listen 443 ssl http2; # managed by Certbot
+ssl_certificate /etc/letsencrypt/live/www.zypcy.cn/fullchain.pem; # managed by Certbot
+ssl_certificate_key /etc/letsencrypt/live/www.zypcy.cn/privkey.pem; # managed by Certbot
+include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+6.但是，Let’s Encrypt 的证书 90 天就过期了，所以，你还要设置上自动化的更新脚本，最容易的莫过于使用 crontab 了。使用 crontab -e 命令加入如下的定时作业（每个月都强制更新一下）
+在shell中输入 crontab -e 回车，输入下面的脚本，一月检查一次证书，并重启 nginx
+0 0 1 * * /usr/bin/certbot renew --force-renewal
+5 0 1 * * /usr/local/nginx/sbin/nginx -s reload
+1
+2
+注：crontab 中有六个字段，其含义如下：
+第1个字段：分钟 (0-59分钟)
+第2个字段：小时 (0-23小时)
+第3个字段：日期 (1-31号)
+第4个字段：月份 (1-12月)
+第5个字段：一周当中的某天 (0-7 [7 或 0 代表星期天])
+
+现在访问 www.zypcy.cn，浏览器自动转换为 https://www.zypcy.cn 了
+
+之前我不太清楚 crontab -e 命令
+因此有一个疑惑，怎么验证 crontab -e 周期性执行任务是否会运行，下面进行验证，目标：每分钟打印一段话
+
+crontab -e 回车
+在里面输入：*/1 * * * * echo “$(date) zhuyu” >> /home/clog.log 2>&1
+查看clog.log文件里面是否有输出
+cat /home/clog.log，可看到确实是 1分钟执行了一次，因此上面一月检查一次ssl证书的命令也会执行
+在这里插入图片描述
+子域名开启HTTPS，使用certbot --nginx命令无法生成ssl证书
+使用：certbot certonly --webroot -w /home/fast/res/ -d your.domain.com
+安装成功后，默认会在 /etc/letsencrypt/live/your.domain.com/ 会生成CA证书。
+
+    server {
+       listen 80;
+       server_name res.csxiuneng.com;
+       location / {
+         alias /home/fast/res/;
+         autoindex on;
+       }
+
+       listen 443 ssl http2; # managed by Certbot
+       ssl_certificate /etc/letsencrypt/live/res.csxiuneng.com/fullchain.pem; # managed by Certbot
+       ssl_certificate_key /etc/letsencrypt/live/res.csxiuneng.com/privkey.pem; # managed by Certbot
+    }
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+参考了一些博客：
+https://coolshell.cn/articles/18094.html
+https://zning.me/15424636102403.html
+https://github.com/zning1994/certbot-letencrypt-wildcardcertificates-alydns-au
+https://blog.csdn.net/liaoyanyunde/article/details/86572370

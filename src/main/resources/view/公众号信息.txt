@@ -9,7 +9,7 @@ appid  wx6c20aafa71b0a512
 
 url http://merrywxf.xyz
 token  123456
-encodingaeskey lSAX1M9hKax3Eh0dZDUvg3RP3vKPjbwbdqjv2y72cZ2
+encodingaeskey lSAX1M9hKax3Eh0dZDUvg3RP3vKPjbwbdqjv2y72cZ2:
 
 阿贝云账号
 https://www.abeiyun.com/control/#/freeServer/314751
@@ -23,3 +23,4 @@ mysql root/paC-Mp(WR2)D
 appid  	wx845cae78e1f02ee8
 appcert
 d1424a2001660581b485b462ab8c1c0a
+

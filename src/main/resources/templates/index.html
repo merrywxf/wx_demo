@@ -9,7 +9,7 @@
 <script type="text/javascript">
     var context = "[[@{/}]]";
     var visitId = $("#visitId").val();
-    var basePath = 'http://www.cainiaokt.com';
+    var basePath = 'http://merrywxf.xyz';
     postAjax( basePath+'/wx_sign',{url:encodeURIComponent(window.location.href)},function (msg) {
         var res = JSON.parse(msg);
         wx.config({
@@ -308,7 +308,7 @@
 <div class="clearfix"></div>
 <div id="musicmp3">
     <div id="audio-btn" class="on" onclick="musicmp3.changeClass(this,'media')">
-        <audio loop src="images/mobile/SoulostarInTime.mp3" id="media" preload="preload" autoplay="autoplay"></audio>
+        <audio loop="loop" src="SoulostarInTime.mp3" id="media" preload="preload" autoplay="autoplay"></audio>
     </div>
 </div>
 <script src="plugins/layui/layui.all.js" charset="utf-8"></script>
@@ -319,7 +319,7 @@
 
     function bgm() {
         var audio = document.getElementById("media");
-        audio.setAttribute("src", "images/mobile/SoulostarInTime.mp3");
+        audio.setAttribute("src", "SoulostarInTime.mp3");
         audio.play();
     }
 
